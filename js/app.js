@@ -1,4 +1,3 @@
-
 /**
  * 
  * Manipulating the DOM exercise.
@@ -18,7 +17,7 @@ const sections = document.querySelectorAll('section');
 const navbarList = document.getElementById('navbar__list');
 const backToTopButton = document.createElement('button');
 
-// Add styles for the back-to-top button
+// Add styles for the back-to-top button and active class in the navigation
 const style = document.createElement('style');
 style.innerHTML = `
   .back-to-top {
@@ -40,6 +39,12 @@ style.innerHTML = `
 
   .back-to-top:hover {
     background-color: #f1f1f1; 
+  }
+
+  .menu__link.active {
+    border: 2px solid red;
+    padding: 5px;
+    border-radius: 5px;
   }
 `;
 
@@ -94,10 +99,13 @@ const createNav = () => {
 // Function to add active class to section in viewport
 const setActiveClass = () => {
   sections.forEach((section) => {
+    const anchor = document.querySelector(`a[href="#${section.id}"]`);
     if (isInViewport(section)) {
       section.classList.add('your-active-class');
+      anchor.classList.add('active');
     } else {
       section.classList.remove('your-active-class');
+      anchor.classList.remove('active');
     }
   });
 };
